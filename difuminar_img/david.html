@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen Difuminada</title>
+    <style>
+        img {
+            width: 300px;
+            height: auto;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="range" id="blurSlider" min="0" max="10" step="0.1" value="0">
+        <div>
+            <!--<span>jumpscare</span>-->
+            <span id="counter">0%</span>
+        </div>
+        <img id="image" src="foto_david.jpg" alt="Ejemplo">
+    </div>
+    
+    <script>
+        const image = document.getElementById("image");
+        const slider = document.getElementById("blurSlider");
+        const counter = document.getElementById("counter");
+        
+        slider.addEventListener("input", function() {
+            const blurValue = 10 - this.value;
+            const opacityValue = this.value / 10;
+            const percentage = Math.round(opacityValue * 100);
+            image.style.filter = `blur(${blurValue}px)`;
+            image.style.opacity = opacityValue;
+            counter.textContent = `${percentage}%`;
+        });
+    </script>
+</body>
+</html>
